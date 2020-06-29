@@ -1,0 +1,23 @@
+---
+# removing un-used dependiencies
+- name: removing un-used dependiencies
+  yum:
+    autoremove: yes
+    purge: yes 
+
+# deleting yum-cache
+- name: collecting list of apt-cache
+  find:
+    paths: "{{ yum_cache }}"
+    recurse: true
+  register: files_to_delete
+
+- name: deleting apt-cache files
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ files_to_delete.files }}"
+
+
+
+  

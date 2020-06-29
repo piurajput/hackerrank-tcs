@@ -1,0 +1,19 @@
+---
+# removing un-used dependiencies
+- name: removing un-used dependiencies
+  apt:
+    autoremove: yes
+    purge: yes 
+
+# deleting apt-cache
+- name: collecting list of apt-cache
+  find:
+    paths: "{{ apt_cache }}"
+    patterns: "*.deb"
+  register: files_to_delete
+
+- name: deleting apt-cache files
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ files_to_delete.files }}"

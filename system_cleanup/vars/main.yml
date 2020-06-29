@@ -1,0 +1,7 @@
+---
+apt_cache: /var/cache/apt/archives/
+yum_cache: /var/cache/yum/
+check_directory: /var
+Home_directory: /home/top10_directory.txt
+old_file_path: /home/
+cache_path: /home/ubuntu/.cache/
